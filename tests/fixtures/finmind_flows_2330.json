@@ -1,0 +1,10 @@
+[
+  {"date": "2024-01-02", "stock_id": "2330", "name": "Foreign_Investor",    "buy": 20000000, "sell": 15000000},
+  {"date": "2024-01-02", "stock_id": "2330", "name": "Foreign_Dealer_Self", "buy": 100000,   "sell": 40000},
+  {"date": "2024-01-02", "stock_id": "2330", "name": "Investment_Trust",    "buy": 3000000,  "sell": 1000000},
+  {"date": "2024-01-02", "stock_id": "2330", "name": "Dealer_self",         "buy": 500000,   "sell": 700000},
+  {"date": "2024-01-02", "stock_id": "2330", "name": "Dealer_Hedging",      "buy": 250000,   "sell": 150000},
+  {"date": "2024-01-03", "stock_id": "2330", "name": "Foreign_Investor",    "buy": 1000000,  "sell": 2000000},
+  {"date": "2024-01-03", "stock_id": "2330", "name": "Investment_Trust",    "buy": 400000,   "sell": 400000},
+  {"date": "2024-01-03", "stock_id": "2330", "name": "Dealer_self",         "buy": 100000,   "sell": 50000}
+]

@@ -1,0 +1,6 @@
+# Current holdings (D-004). Loaded during analysis; replaces a CRUD CLI for now.
+# qty in shares (board lot = 1000), avg_cost in TWD.
+positions:
+  "2330":
+    qty: 61
+    avg_cost: 1307.26

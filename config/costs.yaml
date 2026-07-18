@@ -1,0 +1,9 @@
+# Trading cost assumptions for backtest realism (TWSE).
+brokerage:
+  base_rate: 0.001425        # 0.1425% per side (statutory list rate)
+  discount_multiplier: 0.5   # effective = base_rate * discount_multiplier
+                             # common online discounts ~0.28-0.60 (2.8折-6折)
+tax:
+  sell_tax_rate: 0.003       # securities transaction tax, 0.3% on sells only
+slippage:
+  bps: 5                     # assumed slippage per side, basis points
