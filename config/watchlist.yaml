@@ -1,0 +1,8 @@
+# Watchlist (D-019 report section, Q-1). Tickers to surface in the daily report
+# beyond current holdings — names you're tracking but don't own yet.
+# Same 4-digit TWSE codes as elsewhere. Edit freely; may sit inside or outside
+# the universe. Empty list is valid (the report section simply omits).
+tickers:
+  - "2379"  # 瑞昱 Realtek
+  - "3034"  # 聯詠 Novatek
+  - "6415"  # 矽力-KY Silergy

@@ -74,13 +74,15 @@ declan/
     strategies/              # USER-AUTHORED strategy specs (YAML, see schema below)
     analysis_spec.md         # USER-AUTHORED: metrics + monthly/quarterly analysis definition
     news_sources.yaml        # RSS/API news feeds
+    watchlist.yaml           # tickers to surface in reports beyond holdings (M2)
   prompts/
     news_rubric.md           # USER-AUTHORED: taxonomy + impact scoring rubric for filter model
     daily_analyst.md         # system prompt for the strong-model daily report
   src/declan/
     ingest/                  # finmind.py, twse_openapi.py, news_poller.py
     store/                   # duckdb schema, migrations, parquet io
-    indicators/              # SMA/EMA/RSI/volume anomalies etc. (pure functions)
+    indicators/              # SMA/EMA/RSI/volume/flows, registry (pure functions)
+    features/                # reusable feature layer: snapshot, regime, rankings (D-017)
     backtest/                # engine.py (event loop), portfolio.py, metrics.py
     strategy/                # yaml loader + rule interpreter
     llm/                     # anthropic client, news_filter.py, daily_analyst.py

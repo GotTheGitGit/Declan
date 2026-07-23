@@ -115,6 +115,14 @@ def load_holdings(path: Path) -> list[Holding]:
     return holdings
 
 
+def load_watchlist(path: Path) -> list[str]:
+    """Load config/watchlist.yaml -> validated ticker list (may be empty)."""
+    if not Path(path).exists():
+        return []
+    raw = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+    return [validate_ticker(t) for t in (raw.get("tickers") or [])]
+
+
 @dataclass(frozen=True)
 class Costs:
     brokerage_base_rate: float

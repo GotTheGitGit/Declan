@@ -1,64 +1,68 @@
-# Declan universe definition (D-002).
-# type: static             -> explicit ticker list below
-# type: index_constituents -> resolved from index membership (future milestone)
+# Declan universe definition (D-002, D-020).
 #
-# Example of the future dynamic form:
-#   type: index_constituents
-#   index: "0050"
-#   historical: true    # use point-in-time constituents to avoid survivorship bias
+# type: static             -> explicit ticker list below (current M2 mode)
+# type: index_constituents -> resolved from index membership (future milestone)
+#     index: "0050"
+#     historical: true     # point-in-time constituents to avoid survivorship bias
+#
+# This file currently pins the OFFICIAL TWSE 50 (0050) constituents as a static
+# snapshot. When point-in-time membership lands, switch `type` to
+# index_constituents; the resolver will supersede this hand-maintained list.
 
 type: static
-name: twse50_core
-# Approximate 0050 (Taiwan 50) constituents. Verify/adjust against the current
-# official list — constituents change quarterly.
+name: twse50
+# Source: 元大台灣50 (0050) published holdings via wantgoo.com / TWSE PCF.
+# Verified snapshot as of 2026-07-22. 0050 reconstitutes quarterly (Mar/Jun/Sep/Dec);
+# refresh this list after each review. Equities only (ETF futures legs excluded).
+as_of: "2026-07-22"
 tickers:
   - "2330"  # 台積電 TSMC
-  - "2317"  # 鴻海 Hon Hai
   - "2454"  # 聯發科 MediaTek
   - "2308"  # 台達電 Delta
-  - "2382"  # 廣達 Quanta
-  - "2412"  # 中華電 Chunghwa Telecom
-  - "2881"  # 富邦金
-  - "2882"  # 國泰金
-  - "2886"  # 兆豐金
-  - "2891"  # 中信金
-  - "2884"  # 玉山金
-  - "2885"  # 元大金
-  - "2892"  # 第一金
-  - "5880"  # 合庫金
-  - "2880"  # 華南金
-  - "2883"  # 開發金
-  - "2887"  # 台新金
-  - "2890"  # 永豐金
-  - "5871"  # 中租-KY
-  - "1216"  # 統一
-  - "2002"  # 中鋼
-  - "1301"  # 台塑
-  - "1303"  # 南亞
-  - "1326"  # 台化
-  - "6505"  # 台塑化
-  - "2303"  # 聯電 UMC
+  - "2317"  # 鴻海 Hon Hai
   - "3711"  # 日月光投控 ASE
-  - "2379"  # 瑞昱 Realtek
-  - "3034"  # 聯詠 Novatek
-  - "3231"  # 緯創 Wistron
-  - "2357"  # 華碩 ASUS
-  - "2345"  # 智邦 Accton
-  - "4938"  # 和碩 Pegatron
-  - "2327"  # 國巨 Yageo
-  - "2395"  # 研華 Advantech
-  - "3008"  # 大立光 Largan
+  - "2303"  # 聯電 UMC
+  - "2383"  # 台光電 EMC
   - "3037"  # 欣興 Unimicron
-  - "2408"  # 南亞科 Nanya Tech
-  - "2603"  # 長榮 Evergreen
-  - "2609"  # 陽明 Yang Ming
-  - "2615"  # 萬海 Wan Hai
-  - "1101"  # 台泥
-  - "2207"  # 和泰車 Hotai
-  - "2912"  # 統一超 PCSC
-  - "3045"  # 台灣大 Taiwan Mobile
-  - "4904"  # 遠傳 FarEasTone
-  - "1590"  # 亞德客-KY Airtac
-  - "6669"  # 緯穎 Wiwynn
+  - "2345"  # 智邦 Accton
+  - "2891"  # 中信金 CTBC
+  - "2327"  # 國巨 Yageo
+  - "2881"  # 富邦金 Fubon
+  - "1303"  # 南亞 Nan Ya
+  - "2882"  # 國泰金 Cathay
+  - "2382"  # 廣達 Quanta
+  - "2887"  # 台新新光金 Taishin
+  - "2360"  # 致茂 Chroma
   - "3017"  # 奇鋐 AVC
+  - "2885"  # 元大金 Yuanta
+  - "2886"  # 兆豐金 Mega
+  - "6669"  # 緯穎 Wiwynn
+  - "2884"  # 玉山金 E.Sun
+  - "2344"  # 華邦電 Winbond
+  - "2412"  # 中華電 Chunghwa Telecom
+  - "2890"  # 永豐金 SinoPac
+  - "2357"  # 華碩 ASUS
+  - "2408"  # 南亞科 Nanya Tech
+  - "3231"  # 緯創 Wistron
+  - "2883"  # 凱基金 KGI
+  - "2059"  # 川湖 King Slide
   - "2301"  # 光寶科 Lite-On
+  - "4958"  # 臻鼎-KY Zhen Ding
+  - "2892"  # 第一金 First Financial
+  - "1216"  # 統一 Uni-President
+  - "2880"  # 華南金 Hua Nan
+  - "3008"  # 大立光 Largan
+  - "3665"  # 貿聯-KY BizLink
+  - "7769"  # 鴻勁 (JMC / Hon Jin)
+  - "3443"  # 創意 GUC
+  - "2368"  # 金像電 GCE
+  - "2449"  # 京元電子 KYEC
+  - "3653"  # 健策 Jentech
+  - "3661"  # 世芯-KY Alchip
+  - "8046"  # 南電 Nan Ya PCB
+  - "2395"  # 研華 Advantech
+  - "5880"  # 合庫金 Taiwan Coop
+  - "2603"  # 長榮 Evergreen
+  - "4904"  # 遠傳 FarEasTone
+  - "3045"  # 台灣大 Taiwan Mobile
+  - "6505"  # 台塑化 FPCC

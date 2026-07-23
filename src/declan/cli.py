@@ -77,6 +77,61 @@ def ingest(
 
 
 @app.command()
+def report(
+    date: str | None = typer.Option(None, help="Trading date YYYY-MM-DD (default: latest)"),
+    root: Path | None = typer.Option(None, help="Project root"),
+) -> None:
+    """Build the deterministic daily Markdown report (no LLM)."""
+    from datetime import date as _date
+
+    from declan.jobs import report as report_job
+
+    paths = _paths(root)
+    as_of = _date.fromisoformat(date) if date else None
+    try:
+        out = report_job.write_report(paths, as_of)
+    except RuntimeError as exc:
+        typer.secho(str(exc), fg="red", err=True)
+        raise typer.Exit(1) from exc
+    typer.secho(f"wrote {out}", fg="green")
+
+
+@app.command()
+def indicators(
+    ticker: str = typer.Argument(..., help="4-digit TWSE code, e.g. 2330"),
+    date: str | None = typer.Option(None, help="As-of date YYYY-MM-DD (default: latest)"),
+    root: Path | None = typer.Option(None, help="Project root"),
+) -> None:
+    """Print current feature values for one ticker (debug aid)."""
+    from datetime import date as _date
+    from datetime import timedelta
+
+    from declan.features import snapshot as snap
+    from declan.indicators import calendar as cal
+    from declan.jobs.report import _load_price_flow
+    from declan.store import db as store_db
+
+    paths = _paths(root)
+    t = cfg.validate_ticker(ticker)
+    with store_db.connect(paths.db_path, read_only=True) as conn:
+        as_of = cal.last_trading_day(conn, _date.fromisoformat(date) if date else None)
+        if as_of is None:
+            typer.secho("no price data - run `declan ingest`", fg="red", err=True)
+            raise typer.Exit(1)
+        pf = _load_price_flow(conn, [t], as_of - timedelta(days=420), as_of)
+    row = snap.feature_snapshot(pf, as_of)
+    if row.is_empty():
+        typer.secho(f"{t} did not trade on {as_of}", fg="yellow")
+        raise typer.Exit(1)
+    d = row.to_dicts()[0]
+    typer.echo(f"{t} features as of {as_of}:")
+    for k, v in d.items():
+        if k in ("ticker", "date"):
+            continue
+        typer.echo(f"  {k:22s} {v}")
+
+
+@app.command()
 def rebuild(
     root: Path | None = typer.Option(None, help="Project root"),
 ) -> None:
